@@ -1,0 +1,32 @@
+.example-form-field {
+    width: 150px;
+    float: right;
+    margin-left: 50%;
+}
+.example-button-row a {
+    height: auto;
+    margin-right: 18px;
+    justify-content: flex-end;
+}
+.button{
+    height: auto;
+    margin-left: 10px;
+    width:150px;
+    margin-top: 8%;
+    margin-left: 10px;
+}
+.header-content{
+    display: flex;
+    align-content: space-between;
+}
+.session-id{
+    display: flex;
+}
+.search-input{
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.card-actions {
+    margin-left: auto !important;
+    margin-top: 1%;
+ }

@@ -1,0 +1,61 @@
+<div class="container-child">
+  <!--<app-inner-navbar></app-inner-navbar>-->
+  <div class="container-below">
+      <mat-card class="mat-elevation-z4">
+          <mat-card-header class="card-header">
+              <div mat-card-avatar class="card-icon mat-elevation-z4">
+                  <mat-icon class="icon"><%=model.icon%></mat-icon>
+              </div>
+              <mat-card-title>
+                <%=model.title%>
+              </mat-card-title>
+              <mat-card-subtitle>{{ view ? 'Visualizar' : edit ? 'Editar' : 'Cadastro' }}</mat-card-subtitle>
+
+          </mat-card-header>
+
+          <mat-card-content>
+              <form class="row" #<%=model.entity%>="ngForm">
+
+                <% for (let field of model.fields) { %>
+
+                    <% if (!field.isId) { %>
+
+                        <% if (field.type == 'string' || field.type == 'number') { %>
+                          <mat-form-field class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <input maxlength="250" type="<%field.type %>" id="ipt_<%=field.name%>" name="<%=field.name%>" matInput #<%=field.name%>="ngModel" [(ngModel)]="obj.<%=field.name%>" required placeholder="<%=field.label%>" [disabled]="view" (blur)="validate(<%=field.name%>.control)">
+                              <mat-error *ngIf="!<%=field.name%>.valid"> Campo Inválido </mat-error>
+                              <mat-error *ngIf="<%=field.name%>.hasError('required')"> Campo obrigatório </mat-error>
+                          </mat-form-field>
+                        <% } %>
+
+                        <% if (field.type == 'date') { %>
+                          <mat-form-field class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <mat-label><%=field.label%></mat-label>
+                            <mat-datepicker-toggle matSuffix [for]="<%=field.name%>"></mat-datepicker-toggle>
+                            <mat-datepicker #<%=field.name%>></mat-datepicker>
+                            <input maxlength="250" id="ipt_<%=field.name%>" matInput #<%=field.name%>="ngModel" [(ngModel)]="obj.<%=field.name%>" name="<%=field.name%>"
+                                [matDatepicker]="<%=field.name%>" (blur)="validate(<%=field.name%>.control)" required
+                                [disabled]="view">
+                            <mat-error *ngIf="<%=field.name%>.hasError('required')">
+                                Campo obrigatório
+                            </mat-error>
+                          </mat-form-field>
+                        <% } %>
+
+                    <% } %>
+
+                <% } %>
+
+              </form>
+          </mat-card-content>
+
+          <!-- <div class="col-md-12">{{ obj | json }}</div> -->
+          
+          <mat-card-actions class="row start-xs card-actions end-xs">
+              <button mat-raised-button color="accent" (click)="back()"> {{view?'Voltar':'Cancelar'}} </button>
+              <button mat-raised-button [disabled]="!<%=model.entity%>.form.valid" *ngIf="!view"  class="btnSave"
+                  (click)="saveOrUpdate()">Salvar</button>
+          </mat-card-actions>
+      </mat-card>
+  </div>
+</div>
