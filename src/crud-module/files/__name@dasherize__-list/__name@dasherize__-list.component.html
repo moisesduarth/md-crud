@@ -20,7 +20,7 @@
                   </button>
               </mat-form-field>
               <div class="example-button-row">
-                  <button id="btn_addEmployee" mat-stroked-button color="primary" class="button" routerLink="new">Solicitar</button>
+                  <button id="btn_addEmployee" mat-stroked-button color="primary" class="button" routerLink="new">Cadastrar</button>
               </div>
           </mat-card-header>
           <mat-card-content>
@@ -41,12 +41,12 @@
                       <td mat-cell *matCellDef="let element">
                           <div class="btn-action">
                               <button id="btn_edit" mat-icon-button aria-label="edit" (click)="edit(element)" class="btn-edit">
-                                  <mat-icon matTooltip="Editar" *ngIf="!disabled  && element.statusRequest=='0'">mode_edit</mat-icon>
+                                  <mat-icon matTooltip="Editar" *ngIf="!disabled">mode_edit</mat-icon>
                               </button>
                               <button id="btn_view" mat-icon-button (click)="view(element)" class="btn-view">
                                   <mat-icon matTooltip="Visualizar">visibility</mat-icon>
                               </button>
-                              <button id="btn_delete" *ngIf="!disabled && element.statusRequest=='0'" mat-icon-button (click)="delete(element)" class="btn-delete">
+                              <button id="btn_delete" *ngIf="!disabled" mat-icon-button (click)="delete(element)" class="btn-delete">
                                   <mat-icon matTooltip="Excluir">delete</mat-icon>
                               </button>
                               <button id="btn_delete" *ngIf="disabled" mat-icon-button (click)="enableEntity(element.pid, element)" class="btn-enable">
